@@ -38,6 +38,15 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
 .nav .links a:hover{opacity:1}
 .nav .links .mini{border:1px solid rgba(243,234,219,.4);padding:.7em 1.3em;border-radius:100px;opacity:1;background:rgba(243,234,219,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .25s ease,color .25s ease,border-color .25s ease}
 .nav .links .mini:hover{background:#F1E7D6;color:#1a1610;border-color:#F1E7D6}
+/* nav adaptado a fondo claro (sección de pasos) */
+.nav .links a{transition:opacity .2s,color .3s ease}
+.nav .logo .logo-dark{display:none}
+.nav.on-light .logo .logo-light{display:none}
+.nav.on-light .logo .logo-dark{display:block}
+.nav.on-light .links a{color:var(--ink);opacity:.9}
+.nav.on-light .links .mini{color:var(--ink);border-color:rgba(0,26,75,.3);background:rgba(0,26,75,.04)}
+.nav.on-light .links .mini:hover{background:var(--ink);color:var(--nude);border-color:var(--ink)}
+.nav.on-light .nav-toggle span{background:var(--ink)}
 /* hamburguesa (mobile) */
 .nav-toggle{display:none;width:30px;height:20px;position:relative;background:none;border:0;cursor:pointer;padding:0;z-index:110}
 .nav-toggle span{position:absolute;left:0;right:0;height:2px;background:var(--cream);border-radius:2px;transition:transform .3s ease,opacity .2s ease,top .3s ease}
@@ -60,17 +69,24 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
 .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(200deg,rgba(52,26,10,.42),rgba(9,7,5,.6));pointer-events:none}
 .panel .inner{position:relative;z-index:2;width:100%}
 
-/* ---- pasos: fondo fijo (gotero) + fade entre pasos + línea de progreso ---- */
+/* ---- pasos: sección clara + foto del kit a la derecha + fade + línea ---- */
 .steps{position:relative;height:220vh}
-.steps-pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
-.steps-pin>.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.steps-content{position:relative;z-index:2;min-height:340px}
-.steps-line{position:absolute;left:0;top:0;height:100%;width:2px;background:rgba(243,234,219,.15);border-radius:2px;overflow:hidden}
-.steps-line-fill{position:absolute;top:0;left:0;width:100%;height:0;background:var(--gold);border-radius:2px}
+.steps-pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;background:var(--nude)}
+.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,80px);align-items:center;width:100%}
+.steps-photo{justify-self:center;max-width:100%}
+.steps-photo img{display:block;width:100%;max-width:500px;max-height:80vh;object-fit:cover;border-radius:8px;box-shadow:0 34px 70px -34px rgba(30,16,8,.55)}
+.steps-content{position:relative;min-height:320px}
+.steps-line{position:absolute;left:0;top:0;height:100%;width:2px;background:rgba(0,26,75,.14);border-radius:2px;overflow:hidden}
+.steps-line-fill{position:absolute;top:0;left:0;width:100%;height:0;background:var(--oro);border-radius:2px}
 .step{position:absolute;top:0;left:56px;right:0;opacity:0;transition:opacity 1.35s cubic-bezier(.45,0,.2,1);pointer-events:none}
 .step.active{opacity:1;pointer-events:auto}
 .step .step-num::before{display:none}
-.step .step-num{margin-bottom:16px}
+.step .step-num{margin-bottom:16px;color:var(--oro2)}
+.steps .step-title{color:var(--ink)}
+.steps .step-body{color:#4a4f63}
+.steps .cta-text{color:var(--ink)}
+.steps .cta-text:hover{color:var(--oro)}
+@media(max-width:820px){.steps-grid{grid-template-columns:1fr;gap:30px}.steps-photo{order:-1}.steps-photo img{max-width:320px;max-height:42vh;margin:0 auto}.steps-content{min-height:280px}.step{left:44px}}
 
 /* ---- revelado (lento y suave) ---- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity 1.5s cubic-bezier(.16,.72,.24,1),transform 1.5s cubic-bezier(.16,.72,.24,1)}
@@ -105,7 +121,7 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
 
 <header class="nav">
   <div class="wrap nav-wrap">
-    <a class="logo" href="#"><img src="logo.png" alt="Nebliqia"></a>
+    <a class="logo" href="#"><img class="logo-light" src="logo.png" alt="Nebliqia"><img class="logo-dark" src="logo-dark.png" alt="Nebliqia"></a>
     <nav class="links">
       <a href="#filosofia">Filosofía</a>
       <a href="#proceso">El proceso</a>
@@ -146,30 +162,33 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
   <!-- 3 · LOS 3 PASOS (fondo fijo: gotero · fade + línea) -->
   <section class="steps" id="proceso">
     <div class="steps-pin">
-      <video class="bg" autoplay loop muted playsinline poster="v-manos.jpg"><source src="v-manos.mp4" type="video/mp4"></video>
-      <div class="warm"></div><div class="veil"></div>
-      <div class="inner" style="position:relative;z-index:2;width:100%"><div class="wrap">
-        <div class="steps-content">
-          <div class="steps-line"><span class="steps-line-fill"></span></div>
-          <div class="step active">
-            <span class="step-num">Paso 01</span>
-            <h2 class="step-title">Construcción<br>de tu camino<br>aromático</h2>
-            <p class="step-body">Completás el cuestionario sensorial que nos permitirá descubrir tus preferencias, recuerdos y sensaciones clave.</p>
-            <a href="#" class="cta-text" style="margin-top:26px"><span class="txt">Crear mi perfume</span> <span class="ar">→</span></a>
-          </div>
-          <div class="step">
-            <span class="step-num">Paso 02</span>
-            <h2 class="step-title">Creación de autor</h2>
-            <p class="step-body">Guiados por tu perfil olfativo, damos forma a la fragancia que te representa. Ciencia y arte se entrelazan, y cada nota se elige buscando la armonía entre aroma y emoción.</p>
-          </div>
-          <div class="step">
-            <span class="step-num">Paso 03</span>
-            <h2 class="step-title">El momento de elegir</h2>
-            <p class="step-body">Una vez creada tu fragancia, podrás elegir entre dos propuestas: Discovery Kit (tres muestras de 5 ml) o tu fragancia de 100 ml.</p>
-            <a href="#" class="cta-text" style="margin-top:26px"><span class="txt">Ir a la tienda</span> <span class="ar">→</span></a>
+      <div class="wrap steps-grid">
+        <div class="steps-textcol">
+          <div class="steps-content">
+            <div class="steps-line"><span class="steps-line-fill"></span></div>
+            <div class="step active">
+              <span class="step-num">Paso 01</span>
+              <h2 class="step-title">Construcción<br>de tu camino<br>aromático</h2>
+              <p class="step-body">Completás el cuestionario sensorial que nos permitirá descubrir tus preferencias, recuerdos y sensaciones clave.</p>
+              <a href="#" class="cta-text" style="margin-top:26px"><span class="txt">Crear mi perfume</span> <span class="ar">→</span></a>
+            </div>
+            <div class="step">
+              <span class="step-num">Paso 02</span>
+              <h2 class="step-title">Creación de autor</h2>
+              <p class="step-body">Guiados por tu perfil olfativo, damos forma a la fragancia que te representa. Ciencia y arte se entrelazan, y cada nota se elige buscando la armonía entre aroma y emoción.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">Paso 03</span>
+              <h2 class="step-title">El momento de elegir</h2>
+              <p class="step-body">Una vez creada tu fragancia, podrás elegir entre dos propuestas: Discovery Kit (tres muestras de 5 ml) o tu fragancia de 100 ml.</p>
+              <a href="#" class="cta-text" style="margin-top:26px"><span class="txt">Ir a la tienda</span> <span class="ar">→</span></a>
+            </div>
           </div>
         </div>
-      </div></div>
+        <div class="steps-photo">
+          <img src="perfume.jpg" alt="El kit de Nebliqia: frasco y caja">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -235,6 +254,7 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
       if(fill) fill.style.height=(p*100)+'%';
       var idx=Math.min(steps.length-1,Math.floor(p*steps.length));
       steps.forEach(function(s,i){s.classList.toggle('active',i===idx);});
+      navEl.classList.toggle('on-light', r.top<=4 && r.bottom>=window.innerHeight*.85);
     }
     window.addEventListener('scroll',function(){requestAnimationFrame(upd);},{passive:true});
     window.addEventListener('resize',upd);
