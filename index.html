@@ -77,6 +77,8 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
 .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(200deg,rgba(52,26,10,.42),rgba(9,7,5,.6));pointer-events:none}
 @media(max-width:820px){.hero .veil{background:linear-gradient(180deg,rgba(8,5,3,.55) 0,transparent 44%),linear-gradient(200deg,rgba(52,26,10,.42),rgba(9,7,5,.6))}}
 .panel .inner{position:relative;z-index:2;width:100%}
+.filo-iso{position:absolute;right:clamp(24px,6vw,84px);top:50%;transform:translateY(-50%);z-index:2;height:min(46vh,380px);width:auto;opacity:.92;pointer-events:none}
+@media(max-width:820px){.filo-iso{display:none}}
 
 /* ---- pasos: sección clara + foto del kit a la derecha + fade + línea ---- */
 .steps{position:relative;height:220vh}
@@ -151,10 +153,10 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
     <video class="bg" autoplay loop muted playsinline poster="v-hero.jpg"><source src="v-hero.mp4" type="video/mp4"></video>
     <div class="warm"></div><div class="veil"></div>
     <div class="inner"><div class="wrap">
-      <span class="eyebrow hero-eyebrow reveal">Fragancias únicas y personalizadas</span>
+      <span class="eyebrow hero-eyebrow reveal">Fragancias personalizadas</span>
       <h1 class="p-title hero-title reveal d1">Sé el artífice<br>de tu propio aroma</h1>
       <p class="hero-sub reveal d2">Respondé el cuestionario sensorial y descubrí la fragancia que te representa.</p>
-      <a href="#" class="cta reveal d3">Empezá el cuestionario <span class="ar">→</span></a>
+      <a href="#" class="cta reveal d3">Crear mi fragancia <span class="ar">→</span></a>
       <span class="mono hero-meta reveal d3">14 preguntas · 5 minutos</span>
     </div></div>
   </section>
@@ -163,6 +165,7 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
   <section class="panel" id="filosofia">
     <video class="bg" autoplay loop muted playsinline poster="v-filo.jpg"><source src="v-filo.mp4" type="video/mp4"></video>
     <div class="warm"></div><div class="veil"></div>
+    <img class="filo-iso" src="iso.png" alt="">
     <div class="inner"><div class="wrap">
       <span class="eyebrow mb reveal">Filosofía</span>
       <h2 class="p-title big-title reveal d1">La neblina<br>y la alquimia</h2>
@@ -187,7 +190,8 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
             <div class="step">
               <span class="step-num">Paso 02</span>
               <h2 class="step-title">Creación de autor</h2>
-              <p class="step-body">Guiados por tu perfil olfativo, damos forma a la fragancia que te representa. Ciencia y arte se entrelazan, y cada nota se elige buscando la armonía entre aroma y emoción.</p>
+              <p class="step-body">Guiados por tu perfil olfativo, damos forma a la fragancia que te representa.</p>
+              <p class="step-body" style="margin-top:14px">Ciencia y arte se entrelazan, y cada nota se elige buscando la armonía entre aroma y emoción.</p>
             </div>
             <div class="step">
               <span class="step-num">Paso 03</span>
