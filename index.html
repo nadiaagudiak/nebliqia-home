@@ -82,24 +82,35 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
 .filo-iso-col img{height:min(46vh,380px);width:auto;opacity:.92}
 @media(max-width:820px){.filo-grid{grid-template-columns:1fr}.filo-iso-col{display:none}}
 
-/* ---- pasos: sección clara + foto del kit a la derecha + fade + línea ---- */
-.steps{position:relative;height:220vh}
+/* ---- pasos: sección clara + foto del kit + 3 tarjetas numeradas (stepper) ---- */
+.steps{position:relative;height:260vh}
 .steps-pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;background:var(--nude)}
-.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,80px);align-items:center;width:100%}
+.steps-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,5vw,80px);align-items:center;width:100%}
 .steps-photo{justify-self:center;max-width:100%}
-.steps-photo img{display:block;width:100%;max-width:400px;max-height:72vh;object-fit:cover;border-radius:8px;box-shadow:0 34px 70px -34px rgba(30,16,8,.55)}
-.steps-content{position:relative;min-height:320px}
-.steps-line{position:absolute;left:0;top:0;height:100%;width:2px;background:rgba(0,26,75,.14);border-radius:2px;overflow:hidden}
-.steps-line-fill{position:absolute;top:0;left:0;width:100%;height:0;background:var(--oro);border-radius:2px}
-.step{position:absolute;top:0;left:56px;right:0;opacity:0;transition:opacity 1.35s cubic-bezier(.45,0,.2,1);pointer-events:none}
-.step.active{opacity:1;pointer-events:auto}
-.step .step-num::before{display:none}
-.step .step-num{margin-bottom:16px;color:var(--oro2)}
-.steps .step-title{color:var(--ink)}
-.steps .step-body{color:#4a4f63}
+.steps-photo img{display:block;width:100%;max-width:380px;max-height:72vh;object-fit:cover;border-radius:8px;box-shadow:0 34px 70px -34px rgba(30,16,8,.55)}
+.steps-eyebrow{display:block;margin-bottom:24px}
+.steps-content{position:relative;padding-left:32px;display:flex;flex-direction:column;gap:14px}
+.steps-line{position:absolute;left:0;top:6px;bottom:6px;width:2px;background:rgba(0,26,75,.12);border-radius:2px;overflow:hidden}
+.steps-line-fill{position:absolute;top:0;left:0;width:100%;height:0;background:var(--oro);border-radius:2px;transition:height .5s cubic-bezier(.45,0,.2,1)}
+.step{display:flex;gap:clamp(14px,1.6vw,20px);align-items:flex-start;background:var(--marfil);border:1px solid rgba(0,26,75,.09);border-radius:14px;padding:18px 24px;opacity:.44;transform:scale(.985);transform-origin:left center;transition:opacity .55s ease,transform .55s cubic-bezier(.16,.72,.24,1),box-shadow .55s ease,border-color .55s ease}
+.step.active{opacity:1;transform:none;box-shadow:0 26px 54px -30px rgba(30,16,8,.42);border-color:rgba(148,121,64,.34)}
+.step-idx{flex:none;font-family:var(--serif);font-variation-settings:'opsz' 110,'wght' 340;font-size:clamp(1.7rem,3vw,2.2rem);line-height:1;color:rgba(0,26,75,.22);transition:color .55s ease}
+.step.active .step-idx{color:var(--oro)}
+.step-tx{flex:1;min-width:0}
+.steps .step-title{color:var(--ink);font-size:clamp(1.2rem,2.2vw,1.6rem);margin-bottom:8px;max-width:none}
+.steps .step-body{color:#4a4f63;font-size:clamp(.96rem,1.35vw,1.06rem);max-width:46ch}
 .steps .cta-text{color:var(--ink)}
 .steps .cta-text:hover{color:var(--oro)}
-@media(max-width:820px){.steps-grid{grid-template-columns:1fr;gap:34px}.steps-photo img{max-width:320px;max-height:42vh;margin:0 auto}.steps-content{min-height:280px}.step{left:44px}}
+@media(max-width:820px){
+  .steps{height:auto}
+  .steps-pin{position:static;height:auto;padding:74px 0}
+  .steps-grid{grid-template-columns:1fr;gap:30px}
+  .steps-photo{order:2}
+  .steps-photo img{max-width:300px;max-height:46vh;margin:0 auto}
+  .steps-content{padding-left:0}
+  .steps-line{display:none}
+  .step,.step.active{opacity:1;transform:none;box-shadow:0 20px 44px -30px rgba(30,16,8,.3);border-color:rgba(148,121,64,.34)}
+}
 
 /* ---- revelado (lento y suave) ---- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity 1.5s cubic-bezier(.16,.72,.24,1),transform 1.5s cubic-bezier(.16,.72,.24,1)}
@@ -183,25 +194,32 @@ body{background:var(--penumbra);color:var(--cream);font-family:var(--sans);font-
     <div class="steps-pin">
       <div class="wrap steps-grid">
         <div class="steps-textcol">
+          <span class="step-num steps-eyebrow">El proceso · en 3 pasos</span>
           <div class="steps-content">
             <div class="steps-line"><span class="steps-line-fill"></span></div>
             <div class="step active">
-              <span class="step-num">Paso 01</span>
-              <h2 class="step-title">Construcción<br>de tu camino<br>aromático</h2>
-              <p class="step-body">Completás el cuestionario sensorial que nos permitirá descubrir tus preferencias, recuerdos y sensaciones clave.</p>
-              <a href="#" class="cta-text" style="margin-top:26px"><span class="txt">Crear mi perfume</span> <span class="ar">→</span></a>
+              <span class="step-idx">01</span>
+              <div class="step-tx">
+                <h2 class="step-title">Construcción de tu camino aromático</h2>
+                <p class="step-body">Completás el cuestionario sensorial que nos permitirá descubrir tus preferencias, recuerdos y sensaciones clave.</p>
+                <a href="#" class="cta-text" style="margin-top:16px"><span class="txt">Crear mi perfume</span> <span class="ar">→</span></a>
+              </div>
             </div>
             <div class="step">
-              <span class="step-num">Paso 02</span>
-              <h2 class="step-title">Creación de autor</h2>
-              <p class="step-body">Guiados por tu perfil olfativo, damos forma a la fragancia que te representa.</p>
-              <p class="step-body" style="margin-top:14px">Ciencia y arte se entrelazan, y cada nota se elige buscando la armonía entre aroma y emoción.</p>
+              <span class="step-idx">02</span>
+              <div class="step-tx">
+                <h2 class="step-title">Creación de autor</h2>
+                <p class="step-body">Guiados por tu perfil olfativo, damos forma a la fragancia que te representa.</p>
+                <p class="step-body" style="margin-top:12px">Ciencia y arte se entrelazan, y cada nota se elige buscando la armonía entre aroma y emoción.</p>
+              </div>
             </div>
             <div class="step">
-              <span class="step-num">Paso 03</span>
-              <h2 class="step-title">El momento de elegir</h2>
-              <p class="step-body">Una vez creada tu fragancia, podrás elegir entre dos propuestas: Discovery Kit (tres muestras de 5 ml) o tu fragancia de 100 ml.</p>
-              <a href="#" class="cta-text" style="margin-top:26px"><span class="txt">Ir a la tienda</span> <span class="ar">→</span></a>
+              <span class="step-idx">03</span>
+              <div class="step-tx">
+                <h2 class="step-title">El momento de elegir</h2>
+                <p class="step-body">Una vez creada tu fragancia, podrás elegir entre dos propuestas: Discovery Kit (tres muestras de 5 ml) o tu fragancia de 100 ml.</p>
+                <a href="#" class="cta-text" style="margin-top:16px"><span class="txt">Ir a la tienda</span> <span class="ar">→</span></a>
+              </div>
             </div>
           </div>
         </div>
